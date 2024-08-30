@@ -3,10 +3,10 @@ import Store from '../components/store/Store';
 
 const Page = () => {
   // Example breadcrumb items
-  const breadcrumbItems = [
-    { label: 'Home', link: '/' },
-    { label: 'Shop', link: '/shop' },
-    { label: 'Category', link: '/category' }
+  const breadcrumbs = [
+    { name: 'Home', url: '#' },
+    { name: 'Coaching', url: '#' },
+    { name: 'Listings', url: '#' }
   ];
 
   // Example product count
@@ -25,36 +25,38 @@ const Page = () => {
   // Example products array
   const products = [
     {
-      name: 'Product 1',
-      price: 150,
-      image: 'https://via.placeholder.com/150',
-      link: '/product/1'
+      id: 1,
+      name: 'Apple iPhone 12 Pro (128GB) Silver',
+      price: 544.90,
+      imageUrl: 'https://static.shuffle.dev/components/preview/4a61043c-520e-44ad-9579-e398d8dfa81e/assets/public/uinel-assets/images/ecommerce-product-list/iphone-12-pro.png',
     },
     {
-      name: 'Product 2',
-      price: 300,
-      image: 'https://via.placeholder.com/150',
-      link: '/product/2'
+      id: 2,
+      name: 'Apple iPhone 12 Pro (128GB) Silver',
+      price: 544.90,
+      imageUrl: 'https://static.shuffle.dev/components/preview/4a61043c-520e-44ad-9579-e398d8dfa81e/assets/public/uinel-assets/images/ecommerce-product-list/iphone-12-pro.png',
     },
     {
-      name: 'Product 3',
-      price: 450,
-      image: 'https://via.placeholder.com/150',
-      link: '/product/3'
-    }
+      id: 3,
+      name: 'Apple iPhone 12 Pro (128GB) Silver',
+      price: 544.90,
+      imageUrl: 'https://static.shuffle.dev/components/preview/4a61043c-520e-44ad-9579-e398d8dfa81e/assets/public/uinel-assets/images/ecommerce-product-list/iphone-12-pro.png',
+    },
+    {
+      id: 4,
+      name: 'Apple iPhone 12 Pro (128GB) Silver',
+      price: 544.90,
+      imageUrl: 'https://static.shuffle.dev/components/preview/4a61043c-520e-44ad-9579-e398d8dfa81e/assets/public/uinel-assets/images/ecommerce-product-list/iphone-12-pro.png',
+    },
+    // Add more products as needed
   ];
-
   return (
-    <div>
-      <h1>Product Page</h1>
+  
       <Store
-        breadcrumbItems={breadcrumbItems}
-        productCount={productCount}
-        priceRange={priceRange}
-        locationOptions={locationOptions}
-        products={products}
+      breadcrumbs={breadcrumbs}
+      products={products}
       />
-    </div>
+    
   );
 };
 

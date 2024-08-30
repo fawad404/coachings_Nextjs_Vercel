@@ -1,3 +1,4 @@
+import Navbar from "./components/navbar/Navbar";
 import Test from "./components/test/Test";
 
 
@@ -10,6 +11,8 @@ const Home = () => {
   ];
 
   return (
+    <>
+    <Navbar />
    <div className="flex flex-col md:flex-row ">
     <section className="bg-coolGray-50 py-4 w-full md:w-4/5">
       <div className="container px-4 mx-auto">
@@ -35,6 +38,7 @@ const Home = () => {
     </section>
    
             </div>
+            </>
   );
 };
 
