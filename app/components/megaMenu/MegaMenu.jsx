@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 // Function to convert subcategory names into URL-friendly slugs
@@ -6,9 +7,17 @@ const slugify = (text) => {
   return text.toLowerCase().replace(/\s+/g, '-');
 };
 
+
+
 const MegaMenu = () => {
   const [hoveredCategory, setHoveredCategory] = useState(null);
+  const router = useRouter();
 
+  const handleItemClick = (itemName) => {
+    const slugData = slugify(itemName);
+    console.log("Navigating to:", `/exam/${slugData}`);
+    router.push(`/exam/${slugData}`);
+  };
   const categories = [
     { name: 'UPSC', courses: '1,132 Courses', subcategories: ['Data 1', 'Data 2', 'Data 3', 'Data 4', 'Data 5', 'Data 6'] },
     { name: 'SSC', courses: '1,132 Courses', subcategories: ['SSC 1', 'SSC 2', 'SSC 3', 'SSC 4', 'SSC 5', 'SSC 6'] },
@@ -40,7 +49,7 @@ const MegaMenu = () => {
                     </svg>
                   </div>
                   <div className="items-start justify-start flex-col inline-flex">
-                    <span className="text-sm">{category.name}</span>
+                    <span className="text-sm" onClick={() => handleItemClick(category.name)}>{category.name}</span>
                     <span className="text-gray-500 text-xs">({category.courses})</span>
                   </div>
                 </div>
@@ -56,7 +65,7 @@ const MegaMenu = () => {
                         {category.subcategories.map((subcat, subIndex) => (
                           <li key={subIndex} className="py-1 hover:bg-gray-200 rounded px-2 cursor-pointer text-sm">
                             {/* Use slugify to make the subcategory name URL friendly */}
-                            <a href={`/exam/${category.name}/${slugify(subcat)}`}>
+                            <a href={`/exam/${slugify(category.name)}/${slugify(subcat)}`}>
                               {subcat}
                             </a>
                           </li>

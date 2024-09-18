@@ -1,12 +1,14 @@
 'use client'
 import React, { useState } from 'react';
 import MegaMenu from '../megaMenu/MegaMenu';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isCoursesDropdownOpen, setCoursesDropdownOpen] = useState(false);
   const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
 
+ 
   // Array of dropdown items
   const dropdownItems = [
     'UPSC', 
@@ -21,14 +23,13 @@ const Navbar = () => {
     'Test Series', 
     'IGP'
   ];
+  const router = useRouter();
 
-  // Handle click and pass the name of the item
   const handleItemClick = (itemName) => {
-    console.log("Clicked on:", itemName);
-
-    // Here you can navigate or perform other actions based on the clicked item
+    
+    console.log("Navigating to:", `/exam/${slugData}`);
+   
   };
-
   return (
     <div className="bg-white">
       {/* Mobile menu */}
@@ -76,19 +77,20 @@ const Navbar = () => {
                    {isCoursesDropdownOpen && (
                      <div id="coursesDropdownMenu" className="mt-2 w-48 ring-1 ring-black ring-opacity-5">
                        <div className="p-4">
-                         <ul role="list" className="space-y-2">
-                           {dropdownItems.map((item, index) => (
-                             <li key={index}>
-                               <a
-                                 href={`/exam/${item}`}
-                                 className="block py-2 px-3 text-gray-500"
-                                 
-                               >
-                                 {item}
-                               </a>
-                             </li>
-                           ))}
-                         </ul>
+                       <ul role="list" className="space-y-2">
+                        {dropdownItems.map((item, index) => (
+                          <li key={index}>
+                            <button
+                              onClick={() => handleItemClick(item)}
+                              className="block py-2 px-3 text-gray-500 text-left w-full"
+                            >
+                              {item}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+
+
                        </div>
                      </div>
                    )}
