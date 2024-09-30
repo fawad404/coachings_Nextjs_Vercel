@@ -1,4 +1,5 @@
 import Carousel from '@/app/components/carousalCourses/CarsoleCourses';
+import CoachingDetail from '@/app/components/coachingDetail/CoachingDetail';
 import Coaching from '@/app/components/coachings/Coaching';
 import DiplomasCarousel from '@/app/components/disploma/diplomas';
 import LearnerComponent from '@/app/components/learner/learner';
@@ -56,9 +57,8 @@ const Page = ({ params }) => {
           products={products}
         />
       ) : urlLength === 4 ? (
-        <DiplomasCarousel />
-      ) : urlLength === 1 ? (
-        <SubjectCard />
+        // <DiplomasCarousel />
+        <CoachingDetail />
       ) : (
         <div className='flex flex-col justify-center items-center min-h-screen'>
           <PopularCourses path={params.courses.slice(0, 2).join('/')} />
