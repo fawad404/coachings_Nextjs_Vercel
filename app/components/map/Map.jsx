@@ -19,7 +19,7 @@ const Mapco = () => {
       <div className="map-overlay">
        <h3>28.645950827027256, 77.18216317364215</h3>
         <p>25B 3rd Floor, Pusa Rd, New Delhi, Delhi 110005, India</p>
-        <p>Coordinates: 28°38'36.2"N 77°10'8.9"E</p>
+        <p>Coordinates: 28°38 36.2 N 77°10 8.9 E</p>
         <button className="directions-btn">Directions</button>
         <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer" className='largermap'>View larger map</a>
       </div>
