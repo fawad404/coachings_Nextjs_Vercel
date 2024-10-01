@@ -1,7 +1,7 @@
 import React from 'react'
 import First from '../coachingDetailscom/CoachingDetailscom'
-import Card2 from '@/app/card2/Card2'
-import Page3 from '@/app/cards/Cards'
+import Card2 from '@/app/components/card2/Card2'
+import Page3 from '@/app/components/cards/Cards'
 
 const CoachingDetail = () => {
   return (
