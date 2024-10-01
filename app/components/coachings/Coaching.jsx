@@ -1,4 +1,5 @@
 import React from 'react';
+import Page3 from '../cards/Cards';
 
 const Coaching = ({ breadcrumbs, sectionTitle, productCount, categories, products }) => {
   return (
@@ -37,69 +38,10 @@ const Coaching = ({ breadcrumbs, sectionTitle, productCount, categories, product
               </div>
             ))}
           </div>
-          <div className='flex flex-col md:flex-row'>
-
-          
-          <div className="w-full md:w-3/4 mb-10 xl:mb-24 shadow-lg">
-            {products.map((product, index) => (
-              <div className="w-full mb-4" key={index}>
-                <div className="xl:flex xl:items-center p-10 xl:pb-12 xl:px-14 xl:pt-16 bg-white rounded-3xl">
-                  <div className="mb-8 xl:mb-0 xl:w-4/12 xl:pr-6">
-                    <a href={product.url}>
-                      <img className="mx-auto object-cover" src={product.image} alt={product.name} />
-                    </a>
-                  </div>
-                  <div className="xl:w-8/12 md:ml-8">
-                    <div className="xl:flex xl:justify-between xl:items-start mb-4 xl:mb-12">
-                      <div className="xl:pr-3 mb-6 xl:mb-0 xl:w-8/12">
-                        <a href={product.url}>
-                          <p className="mb-4 text-xl leading-8 font-heading font-medium hover:underline">{product.name}</p>
-                          <p className="text-darkBlueGray-400">{product.description}</p>
-                        </a>
-                      </div>
-                      <div>
-                      <p className="flex items-center xl:justify-end xl:pl-3 xl:w-4/12 text-xl text-blue-500 font-heading font-medium tracking-tighter">
-                        <span className="mr-2 text-xs">Reviews</span>
-                        <span>{product.price}</span>
-                      </p>
-                      <p className="flex mt-8 items-center xl:justify-end xl:pl-3 xl:w-4/12 text-xl text-blue-500 font-heading font-medium tracking-tighter">
-                        <span className="mr-2 text-xs">Rating</span>
-                        <span>4.5</span>
-                      </p>
-
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap items-center">
-                      <div className="w-1/2 xl:w-6/12">
-                        <div className="flex items-center">
-                          <h3 className="mr-4 font-heading font-medium tracking-tighter">Coachings:</h3>
-                          {product.colors.map((color, i) => (
-                            <div key={i} className="mr-2  border border-gray-300 p-2 rounded-md">
-                              <a className="block bg-white" href="#">{color}</a>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="w-1/2 xl:w-2/12">
-                        <svg className="xl:mx-auto 2xl:mr-0 ml-auto text-gray-400 hover:text-gray-500 cursor-pointer" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          {/* Add SVG path here */}
-                        </svg>
-                      </div>
-                      <div className="mt-6 xl:mt-0 w-full xl:w-4/12 md:-ml-4">
-                  <div className="lg:mx-auto xl:mr-0 lg:max-w-max"><a class="block py-4 px-10 w-full text-lg leading-5 text-white font-medium tracking-tighter font-heading text-center bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl" href="#">
-                    Contact
-                    </a></div>
-                </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className='w-full md:w-1/4'>
-            Adds Section
-          </div>
-          </div>
+          {/* rendering on this */}
+        <Page3/>
+        <Page3/>
+        <Page3/>
         </div>
       </div>
     </section>

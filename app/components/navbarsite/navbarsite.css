@@ -1,0 +1,223 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    /* padding: 2rem; */
+    background-color: #f0f0f0; /* Use a color instead of an image */
+    margin-top: 5rem;
+  }
+  *{
+      font-family: "Roboto";
+  }
+  
+  .left-section {
+    /* width: 60%; */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #e0e0e0; /* Background color for the left section */
+    padding: 1rem;
+    border-radius: 5px;
+    background-image: url('/backgroundhero.png');
+    background-size: cover;
+    color: white;
+    margin-left:2rem ;
+    height: 600px;
+  }
+  .leftsecimg{
+    height: 300px;
+  }
+  
+  .main-text {
+    font-size: 2rem;
+    /* margin-top: 6rem; */
+    font-weight: bold;
+  }
+  
+  .sub-text {
+    font-size: 1rem;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 1rem;
+    margin-left: 30px;
+    margin-top: 1rem;
+  }
+  
+  .btnhero {
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    background: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    width: 150px;
+   
+  }
+  
+  .input-field {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 90%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    /* margin-top: 1rem; */
+  }
+  .crimg{
+    width: 100%;
+    height: 100%;
+  }
+  
+  .right-section {
+    width: 40%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* gap: 1rem; */
+    margin-left: 3rem;
+  }
+  
+  .card {
+    background: #2D577C;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: white;
+    width: 240px;
+    height: 280px;
+    /* margin-left: 10px; */
+    border-radius: 15px;
+  }
+  
+  .card-image {
+    /* width: 100%; */
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    background-color: #ccc; /* Placeholder color for images */
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+  }
+  
+  .card-location {
+    font-size: 1rem;
+    color: white;
+  }
+  
+  .card-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+  }
+  
+  .card-btn {
+    padding: 0.5rem 1rem;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .navigation-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-button {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    background-color: #2d577c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+    font-size: 1rem;
+  }
+  
+  .whatsapp-contact {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: #25D366;
+  }
+  .whatsapp{
+    width: 130px;
+    background-color: #075E54;
+    color: white;
+    height: 30px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+     .container {
+      flex-direction: row;
+    } 
+    .left-section {
+      width: 60%;
+    }
+    .card{
+        margin-top: 1rem;
+    }
+  
+    .right-section {
+      width: 40%;
+      /* margin-top: 2rem; */
+    }
+  
+    .card {
+      width: 80%;
+    }
+  }
+  
+  @media (max-width: 650px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .left-section {
+      width: 90%;
+    }
+  
+    .right-section {
+      width: 100%;
+      grid-template-columns: 1fr;
+      /* margin-top: 2rem; */
+    }
+    .card{
+        margin-top: 2rem;
+        margin-left: -1rem;
+    }
+  
+    .buttons {
+      flex-direction: column;
+      align-items: center;
+      margin-left: 0;
+    }
+  
+    .btnhero {
+      width: 100%;
+    }
+  
+    .input-field {
+      width: 90%;
+    }
+    .card{
+      width: 90%;
+    }
+  }
