@@ -22,7 +22,7 @@ const Coaching = ({ breadcrumbs, sectionTitle, productCount, categories, product
           </ul>
           <div className="pb-9 text-center border-b border-black border-opacity-5">
             <div className="relative">
-              {/* <h2 className="mb-5 md:mb-0 text-9xl xl:text-10xl leading-normal font-heading font-medium text-center">{sectionTitle}</h2> */}
+              <h2 className="mb-5 md:mb-0 text-9xl xl:text-10xl leading-normal font-heading font-medium text-center">{sectionTitle}</h2>
               <span className="md:absolute md:right-0 md:bottom-3 text-sm text-gray-400 font-medium">{productCount} coachings found</span>
             </div>
           </div>
@@ -39,9 +39,7 @@ const Coaching = ({ breadcrumbs, sectionTitle, productCount, categories, product
             ))}
           </div>
           {/* rendering on this */}
-        <Page3/>
-        <Page3/>
-        <Page3/>
+       
         </div>
       </div>
     </section>

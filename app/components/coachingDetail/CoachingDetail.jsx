@@ -14,10 +14,14 @@ const CoachingDetail = () => {
         <Card2/>
         <Card2/>
         <Card2/>
+        <Page3/>
+        <Page3/>
+        <Page3/>
         <Navbarsite/>
         <Behindhero/>
         <Hero2/>
         <Mapco/>
+      
     </div>
   )
 }

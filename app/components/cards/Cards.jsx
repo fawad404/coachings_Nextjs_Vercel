@@ -6,7 +6,7 @@ const Page3 = () => {
   return (
     <div className="flex flex-col lg:flex-row items-start lg:space-x-4 space-y-4 lg:space-y-0  pl-24 bg-[#E5E7EB]  ">
       {/* Card Section */}
-      <div className="flex flex-col lg:flex-row shadow-lg rounded-lg border border-gray-300 p-4 w-full lg:w-[860px] bg-white mt-1">
+      <div className="flex flex-col lg:flex-row shadow-lg rounded-lg border border-gray-300 p-4 w-full lg:w-[860px] bg-white mt-16">
         {/* Image */}
         <div className="flex-shrink-0 w-full lg:w-[250px] h-auto lg:h-[250px] overflow-hidden rounded-lg">
           <img src="/1.png" alt="Nucleus Education" className="w-full h-full object-cover" />

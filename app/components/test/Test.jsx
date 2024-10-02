@@ -1,4 +1,5 @@
 import React from 'react';
+import Page3 from '../cards/Cards';
 
 
 const Test = ({ name, email, year, question, hour, imgSrc }) => (
