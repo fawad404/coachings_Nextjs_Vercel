@@ -6,6 +6,8 @@ import Navbarsite from '../navbarsite/Navbarsite'
 import Behindhero from '@/app/components/behindhero/Behindhero'
 import Hero2 from '@/app/components/herosection/Herosection'
 import Mapco from '../map/Map'
+import Popupgoogle from '../popupGoogle/Popupgoogle'
+import Popupphone from '@/app/popupPhone/Popupphone'
 
 const CoachingDetail = () => {
   return (
@@ -21,7 +23,8 @@ const CoachingDetail = () => {
         <Behindhero/>
         <Hero2/>
         <Mapco/>
-      
+        {/* <Popupphone/> */}
+        {/* <Popupgoogle/> */}
     </div>
   )
 }
