@@ -118,7 +118,7 @@ const Popupgoogle = ({ isOpen, onClose, onGoogleLogin, onGitHubLogin, onLinkedIn
                         </form>
 
                         <div className="mt-6 text-center text-sm text-slate-600">
-                            Don't have an account?
+                            Dont have an account?
                             <a href="/signup" className="font-medium text-[#4285f4]"> Sign up</a>
                         </div>
                     </div>
