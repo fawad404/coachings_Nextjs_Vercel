@@ -13,13 +13,11 @@ import Navbar2 from '../navbar(2)/Navbar'
 const CoachingDetail = () => {
   return (
     <div>
-        <First/>
+        {/* <First/> */}
+        {/* <Card2/>
         <Card2/>
-        <Card2/>
-        <Card2/>
-        <Page3/>
-        <Page3/>
-        <Page3/>
+        <Card2/> */}
+       
         <Navbarsite/>
         <Behindhero/>
         <Hero2/>
