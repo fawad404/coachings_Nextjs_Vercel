@@ -1,13 +1,12 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Image from 'next/image'; // Import Next.js Image component
 
 // Function to convert subcategory names into URL-friendly slugs
 const slugify = (text) => {
   return text.toLowerCase().replace(/\s+/g, '-');
 };
-
-
 
 const MegaMenu = () => {
   const [hoveredCategory, setHoveredCategory] = useState(null);
@@ -15,15 +14,41 @@ const MegaMenu = () => {
 
   const handleItemClick = (itemName) => {
     const slugData = slugify(itemName);
-    console.log("Navigating to:", `/exam/${slugData}`);
+    console.log('Navigating to:', `/exam/${slugData}`);
     router.push(`/exam/${slugData}`);
   };
+
   const categories = [
-    { name: 'UPSC', courses: '1,132 Courses', subcategories: ['Data 1', 'Data 2', 'Data 3', 'Data 4', 'Data 5', 'Data 6'] },
-    { name: 'SSC', courses: '1,132 Courses', subcategories: ['SSC 1', 'SSC 2', 'SSC 3', 'SSC 4', 'SSC 5', 'SSC 6'] },
-    { name: 'CUET', courses: '1,132 Courses', subcategories: ['Data 1', 'Data 2', 'Data 3', 'Data 4', 'Data 5', 'Data 6'] },
-    { name: 'NEET', courses: '1,132 Courses', subcategories: ['NEET 1', 'NEET 2', 'NEET 3', 'NEET 4', 'NEET 5', 'NEET 6'] },
-    { name: 'JEE', courses: '1,132 Courses', subcategories: ['JEE 1', 'JEE 2', 'JEE 3', 'JEE 4', 'JEE 5', 'JEE 6'] },
+    {
+      name: 'UPSC',
+      courses: '1,132 Courses',
+      image: '/1.png', 
+      subcategories: ['Data 1', 'Data 2', 'Data 3', 'Data 4', 'Data 5', 'Data 6']
+    },
+    {
+      name: 'SSC',
+      courses: '1,132 Courses',
+      image: '/2.png', // Add image URL here
+      subcategories: ['SSC 1', 'SSC 2', 'SSC 3', 'SSC 4', 'SSC 5', 'SSC 6']
+    },
+    {
+      name: 'CUET',
+      courses: '1,132 Courses',
+      image: '/4.png', // Add image URL here
+      subcategories: ['Data 1', 'Data 2', 'Data 3', 'Data 4', 'Data 5', 'Data 6']
+    },
+    {
+      name: 'NEET',
+      courses: '1,132 Courses',
+      image: '/1.png', // Add image URL here
+      subcategories: ['NEET 1', 'NEET 2', 'NEET 3', 'NEET 4', 'NEET 5', 'NEET 6']
+    },
+    {
+      name: 'JEE',
+      courses: '1,132 Courses',
+      image: '/backgroundhero.png', // Add image URL here
+      subcategories: ['JEE 1', 'JEE 2', 'JEE 3', 'JEE 4', 'JEE 5', 'JEE 6']
+    }
   ];
 
   return (
@@ -43,13 +68,20 @@ const MegaMenu = () => {
                 onMouseLeave={() => setHoveredCategory(null)}
               >
                 <div className="flex flex-row">
+                  {/* Category Image */}
                   <div className="mt-2 mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                      <path d="M5 12H3v9h9v-2H5zm7-7h7v7h2V3h-9z" />
-                    </svg>
+                    <img
+                      src={category.image}
+                      alt={`${category.name} Image`}
+                      width={24}
+                      height={34}
+                      className="rounded" 
+                    />
                   </div>
                   <div className="items-start justify-start flex-col inline-flex">
-                    <span className="text-sm" onClick={() => handleItemClick(category.name)}>{category.name}</span>
+                    <span className="text-sm" onClick={() => handleItemClick(category.name)}>
+                      {category.name}
+                    </span>
                     <span className="text-gray-500 text-xs">({category.courses})</span>
                   </div>
                 </div>
@@ -64,10 +96,7 @@ const MegaMenu = () => {
                       <ul className="text-gray-700">
                         {category.subcategories.map((subcat, subIndex) => (
                           <li key={subIndex} className="py-1 hover:bg-gray-200 rounded px-2 cursor-pointer text-sm">
-                            {/* Use slugify to make the subcategory name URL friendly */}
-                            <a href={`/exam/${slugify(category.name)}/${slugify(subcat)}`}>
-                              {subcat}
-                            </a>
+                            <a href={`/exam/${slugify(category.name)}/${slugify(subcat)}`}>{subcat}</a>
                           </li>
                         ))}
                       </ul>

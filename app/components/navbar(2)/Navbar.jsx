@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import MegaMenu from '../megaMenu/MegaMenu';
 import { useRouter } from 'next/navigation';
 
-const Navbar = () => {
+const Navbar2 = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isCoursesDropdownOpen, setCoursesDropdownOpen] = useState(false);
   const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
@@ -67,7 +67,7 @@ const Navbar = () => {
                      className="flex items-center space-x-2 py-2 px-3 bg-transparent text-gray-900 focus:outline-none"
                      onClick={() => setCoursesDropdownOpen(!isCoursesDropdownOpen)}
                    >
-                     <span className="font-medium text-gray-900">Exams</span>
+                     <span className="font-medium text-gray-900 ">Exams</span>
                      <svg className="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                      </svg>
@@ -168,4 +168,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar2;

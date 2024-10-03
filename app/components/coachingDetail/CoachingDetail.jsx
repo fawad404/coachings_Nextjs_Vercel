@@ -8,6 +8,7 @@ import Hero2 from '@/app/components/herosection/Herosection'
 import Mapco from '../map/Map'
 import Popupgoogle from '../popupGoogle/Popupgoogle'
 import Popupphone from '@/app/popupPhone/Popupphone'
+import Navbar2 from '../navbar(2)/Navbar'
 
 const CoachingDetail = () => {
   return (
@@ -25,6 +26,7 @@ const CoachingDetail = () => {
         <Mapco/>
         {/* <Popupphone/> */}
         {/* <Popupgoogle/> */}
+        <Navbar2/>
     </div>
   )
 }
