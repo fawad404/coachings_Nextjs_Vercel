@@ -4,9 +4,9 @@ import { FaStar, FaStarHalfAlt, FaArrowRight } from 'react-icons/fa';
 
 const Page3 = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-start lg:space-x-4 space-y-4 lg:space-y-0  pl-24 bg-[#E5E7EB]  ">
+    <div className="flex flex-col lg:flex-row items-center justify-center lg:items-start lg:space-x-4 space-y-4 lg:space-y-0  bg-[#E5E7EB]  ">
       {/* Card Section */}
-      <div className="flex flex-col lg:flex-row shadow-lg rounded-lg border border-gray-300 p-4 w-full lg:w-[860px] bg-white mt-16">
+      <div className="flex flex-col lg:flex-row shadow-lg rounded-lg border border-gray-300 p-4 w-full lg:w-[860px] bg-white mt-16 ">
         {/* Image */}
         <div className="flex-shrink-0 w-full lg:w-[250px] h-auto lg:h-[250px] overflow-hidden rounded-lg">
           <img src="/1.png" alt="Nucleus Education" className="w-full h-full object-cover" />
@@ -48,7 +48,7 @@ const Page3 = () => {
       </div>
 
       {/* JEE Blogs Section */}
-      <div className="flex flex-col md:flex-row justify-end mt-20 overflow-hidden jeeblog">
+      <div className="flex flex-col md:flex-row justify-end mt-20 overflow-hidden jeeblog ">
   <div className="bg-white p-6 shadow-lg w-full md:w-[435px] h-auto md:h-[360px] ml-0 md:ml-8 mt-8">
     <h1 className="text-start text-3xl font-bold mb-4">JEE BLOGS</h1>
     <ul className="space-y-4 mt-4 text-sm">
