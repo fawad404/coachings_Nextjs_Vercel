@@ -9,6 +9,7 @@ import Mapco from '../map/Map'
 import Popupgoogle from '../popupGoogle/Popupgoogle'
 import Popupphone from '@/app/popupPhone/Popupphone'
 import Navbar2 from '../navbar(2)/Navbar'
+import Testbook from '@/app/testbook/Testbook'
 
 const CoachingDetail = () => {
   return (
@@ -17,7 +18,7 @@ const CoachingDetail = () => {
         {/* <Card2/>
         <Card2/>
         <Card2/> */}
-       
+    
         <Navbarsite/>
         <Behindhero/>
         <Hero2/>
@@ -25,6 +26,7 @@ const CoachingDetail = () => {
         {/* <Popupphone/> */}
         {/* <Popupgoogle/> */}
         <Navbar2/>
+      
     </div>
   )
 }

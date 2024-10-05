@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import MegaMenu from '../megaMenu/MegaMenu';
 import { useRouter } from 'next/navigation';
 
+
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isCoursesDropdownOpen, setCoursesDropdownOpen] = useState(false);
@@ -164,6 +165,7 @@ const Navbar = () => {
         {/* Mega Menu */}
         {isMegaMenuOpen && <MegaMenu />}
       </header>
+   
     </div>
   );
 };
