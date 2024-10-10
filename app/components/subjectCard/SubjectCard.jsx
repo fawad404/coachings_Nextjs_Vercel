@@ -5,32 +5,32 @@ const SubjectCard = () => {
   const cardsData = [
     {
       imageSrc: 'https://static.shuffle.dev/components/preview/697340ff-5445-426e-84bf-57e856b9afbf/assets/public/nightsable-assets/images/cards/bg-image1.png',
-      title: 'Safeguarded with leading banks',
+      title: 'Subject 1',
     },
     {
       imageSrc: 'https://static.shuffle.dev/components/preview/697340ff-5445-426e-84bf-57e856b9afbf/assets/public/nightsable-assets/images/cards/bg-image2.png',
-      title: 'Advanced security features',
+      title: 'Subject 2',
     },
     {
       imageSrc: 'https://static.shuffle.dev/components/preview/697340ff-5445-426e-84bf-57e856b9afbf/assets/public/nightsable-assets/images/cards/bg-image3.png',
-      title: 'Protection for your assets',
+      title: 'Subject 3',
     },
     {
       imageSrc: 'https://static.shuffle.dev/components/preview/697340ff-5445-426e-84bf-57e856b9afbf/assets/public/nightsable-assets/images/cards/bg-image1.png',
-      title: 'Global reach, local support',
+      title: 'Subject 4',
     },
     {
       imageSrc: 'https://static.shuffle.dev/components/preview/697340ff-5445-426e-84bf-57e856b9afbf/assets/public/nightsable-assets/images/cards/bg-image2.png',
-      title: 'Industry-leading services',
+      title: 'Subject 5',
     },
     {
       imageSrc: 'https://static.shuffle.dev/components/preview/697340ff-5445-426e-84bf-57e856b9afbf/assets/public/nightsable-assets/images/cards/bg-image3.png',
-      title: 'Reliable financial partners',
+      title: 'Subject 6',
     },
   ];
 
   return (
-    <section className="pt-20 pb-24 bg-blueGray-900">
+    <section className="pt-20 pb-24 p-20 bg-blueGray-900">
       <div className="container px-4 mx-auto">
         <div className="text-center">
           <span className="inline-block mb-4 text-sm text-green-400 font-medium tracking-tighter">NightsableCard</span>
@@ -39,7 +39,7 @@ const SubjectCard = () => {
         </div>
         <div className="flex flex-wrap -m-4">
           {cardsData.map((card, index) => (
-            <div key={index} className="w-full md:w-1/2 lg:w-1/4 p-4">
+            <div key={index} className="w-full md:w-1/4 lg:w-1/5 p-4">
               <div className="relative mb-8 overflow-hidden rounded-5xl">
                 <img className="w-full transform hover:scale-125 transition duration-1000" src={card.imageSrc} alt="Card Image" />
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-card p-8">
