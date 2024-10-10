@@ -11,7 +11,7 @@ export default function Card2() {
       </div>
 
       {/* Right Section */}
-      <div className="flex-2 flex justify-end pr-20 mt-8">
+      <div className="flex-2 flex justify-end pr-20 mt-8  bg-[#FCFCFC] shadow-2xl">
         <div className="bg-white p-6 shadow-lg w-[435px] h-[360px]">
           <h1 className="text-start text-3xl font-bold mb-4">JEE BLOGS</h1>
           <ul className="list-none text-start">

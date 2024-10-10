@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import MegaMenu from '../megaMenu/MegaMenu';
 import { useRouter } from 'next/navigation';
-
+import { FaSearch } from 'react-icons/fa'
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -51,7 +51,7 @@ const Navbar = () => {
                    </svg>
                  </button>
                </div>
-   
+        
                {/* Links */}
                <div className="mt-2">
                  <div className="border-b border-gray-200">
@@ -61,7 +61,7 @@ const Navbar = () => {
                      </button>
                    </div>
                  </div>
-   
+          
                  <div className="relative p-2">
                    <button
                      id="coursesDropdownToggle"
@@ -113,6 +113,16 @@ const Navbar = () => {
            </div>
          </div>
       )}
+ <div className="flex items-center ml-36 justify-center transform translate-y-12 ">
+  <input 
+    type="text" 
+    placeholder="Search..." 
+    className="ml-5 p-1 text-base h-8 w-52 border border-black rounded-l-md transform " 
+  />
+  <div className="h-8 w-12 bg-gray-600 flex justify-center items-center text-white  rounded-r-md">
+    <FaSearch className=" text-center " />
+  </div>
+</div>
 
       <header className="relative border-b border-gray-400 z-50">
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

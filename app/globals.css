@@ -4,24 +4,24 @@
 
 
 
-.cards:hover .certificate {
+/* .cards:hover .certificate {
     display: none;
 }
 
 .cards:hover .HoverContent {
     display: block;
-}
+} */
 
-.scrollbar-hide::-webkit-scrollbar {
+/* .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
 
-/* Hide scrollbar for other browsers (Firefox, etc.) */
+
 .scrollbar-hide {
     -ms-overflow-style: none;
-    /* IE and Edge */
+  
     scrollbar-width: none;
-    /* Firefox */
+
 }
 
 #carousel {
@@ -29,5 +29,5 @@
     white-space: wrap;
     scroll-behavior: smooth;
 
-}
+} */
 

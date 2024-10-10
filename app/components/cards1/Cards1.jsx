@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import { FaStar, FaStarHalfAlt, FaArrowRight } from 'react-icons/fa';
 
+import { useServer } from 'next/server'
 
-
-const Page3 = () => {
+const Cards1 = () => {
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center lg:items-start lg:space-x-4 space-y-2 lg:space-y-0    ">
       {/* Card Section */}
-      <div className="flex flex-col lg:flex-row shadow-lg rounded-lg border border-gray-300 p-4 w-full lg:w-[860px] bg-white mt-8 ">
+      <div className="flex flex-col lg:flex-row shadow-xl rounded-lg border border-gray-300 p-4 w-full lg:w-[860px] bg-white  ">
         {/* Image */}
         <div className="flex-shrink-0 w-full lg:w-[250px] h-auto lg:h-[250px] overflow-hidden rounded-lg">
           <img src="/1.png" alt="Nucleus Education" className="w-full h-full object-cover" />
@@ -16,7 +16,7 @@ const Page3 = () => {
         {/* Card Content */}
         <div className="flex flex-col justify-between p-4">
           {/* Title */}
-          <h2 className="text-2xl font-bold">Nucleus Education</h2>
+          <h2 className="text-2xl font-bold"> <link rel="stylesheet" href="../navbarsite/Navbarsite"/>Nucleus Education</h2>
 
           {/* Rating */}
           <div className="flex items-center text-yellow-400">
@@ -78,4 +78,4 @@ const Page3 = () => {
   );
 };
 
-export default Page3;
+export default Cards1;

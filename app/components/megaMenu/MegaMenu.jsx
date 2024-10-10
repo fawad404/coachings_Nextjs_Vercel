@@ -73,8 +73,8 @@ const MegaMenu = () => {
                     <img
                       src={category.image}
                       alt={`${category.name} Image`}
-                      width={24}
-                      height={34}
+                      width={40}
+                      height={80}
                       className="rounded" 
                     />
                   </div>

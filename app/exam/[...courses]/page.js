@@ -3,6 +3,7 @@ import Carousel from '@/app/components/carousalCourses/CarsoleCourses';
 import CoachingDetail from '@/app/components/coachingDetail/CoachingDetail';
 import Coaching from '@/app/components/coachings/Coaching';
 import DiplomasCarousel from '@/app/components/disploma/diplomas';
+import Footer from '@/app/components/footer/Footer';
 import LearnerComponent from '@/app/components/learner/learner';
 import PopularCourses from '@/app/components/popularCourses/PopularCourses';
 import StatComponent from '@/app/components/statsSection/StatsSection';
@@ -62,11 +63,15 @@ const Page = ({ params }) => {
         <CoachingDetail />
         
       ) : (
+        <>
         <div className='flex flex-col justify-center items-center min-h-screen'>
           <PopularCourses path={params.courses.slice(0, 2).join('/')} />
           <Carousel />
           <LearnerComponent />
+          
         </div>
+        <Footer />
+        </>
       )}
     </>
   );
