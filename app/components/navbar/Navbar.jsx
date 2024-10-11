@@ -32,13 +32,26 @@ const Navbar = () => {
    
   };
   return (
-    <div className="bg-white">
+
+    <div className="bg-white ">
+                  <div className="flex items-center ml-36 justify-center transform translate-y-12  ">
+  <input 
+    type="text" 
+    placeholder="Search..." 
+    className="ml-5 p-1 text-base h-8 w-52 border border-black rounded-l-md transform  " 
+  />
+  <div className="h-8 w-12 bg-gray-600 flex justify-center items-center text-white  rounded-r-md">
+    <FaSearch className=" text-center " />
+  </div>
+</div>
       {/* Mobile menu */}
       {isMobileMenuOpen && (
-         <div className="relative z-40 md:hidden lg:hidden" role="dialog" aria-modal="true" id="mobileMenu">
+         <div className="relative z-40 md:hidden lg:hidden " role="dialog" aria-modal="true" id="mobileMenu">
            <div className="fixed inset-0 bg-black bg-opacity-25" aria-hidden="true"></div>
            <div className="fixed inset-0 z-40 flex">
              <div className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
+
+ 
                <div className="flex px-4 pb-2 pt-5">
                  <button
                    id="closeMobileMenu"
@@ -53,7 +66,7 @@ const Navbar = () => {
                </div>
         
                {/* Links */}
-               <div className="mt-2">
+               <div className="mt-2 ">
                  <div className="border-b border-gray-200">
                    <div className="-mb-px flex space-x-8 px-4" aria-orientation="horizontal" role="tablist">
                      <button className="flex-1 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-base font-medium text-gray-900">
@@ -68,7 +81,7 @@ const Navbar = () => {
                      className="flex items-center space-x-2 py-2 px-3 bg-transparent text-gray-900 focus:outline-none"
                      onClick={() => setCoursesDropdownOpen(!isCoursesDropdownOpen)}
                    >
-                     <span className="font-medium text-gray-900">Exams</span>
+                     <span className="font-medium text-gray-900 ">Exams</span>
                      <svg className="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                      </svg>
@@ -97,7 +110,7 @@ const Navbar = () => {
                    )}
                  </div>
                </div>
-   
+
                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                  <div className="flow-root"><a href="#" className="-m-2 block p-2 font-medium text-gray-900">Test</a></div>
                  <div className="flow-root"><a href="#" className="-m-2 block p-2 font-medium text-gray-900">Past Papers</a></div>
@@ -113,16 +126,7 @@ const Navbar = () => {
            </div>
          </div>
       )}
- <div className="flex items-center ml-36 justify-center transform translate-y-12 ">
-  <input 
-    type="text" 
-    placeholder="Search..." 
-    className="ml-5 p-1 text-base h-8 w-52 border border-black rounded-l-md transform " 
-  />
-  <div className="h-8 w-12 bg-gray-600 flex justify-center items-center text-white  rounded-r-md">
-    <FaSearch className=" text-center " />
-  </div>
-</div>
+
 
       <header className="relative border-b border-gray-400 z-50">
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
