@@ -4,7 +4,6 @@ import Test from '../components/test/Test'
 
 const page = () => {
   
-  console.log(session);
     const users = [
         { name: 'UPSC General Studies Paper 2 2020', email: 'As officially conducted on October 03 2020', year: '24', question: '420', hour: '2', imgSrc: '/test-data-svgrepo-com (1).svg' },
         { name: 'UPSC Prelims GS 2020', email: 'As officially conducted on October 03 2020', year: '18', question: '310', hour: '1', imgSrc: '/test-data-svgrepo-com (1).svg' },
