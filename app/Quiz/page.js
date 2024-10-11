@@ -3,6 +3,7 @@ import QuizFromWord from '../components/QuizStart/quiz'
 
 
 const page = () => {
+  
   return (
     <div>
      <QuizFromWord />

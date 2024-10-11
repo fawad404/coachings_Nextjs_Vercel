@@ -1,134 +1,183 @@
-'use client'
-import Popupphone from '@/app/popupPhone/Popupphone';
-import React from 'react';
-import { useState } from 'react';
-const Popupgoogle = ({ isOpen, onClose, onGoogleLogin, onGitHubLogin, onLinkedInLogin }) => {
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
+'use client';
 
-    const openPopup = () => {
-        setIsPopupOpen(true);
-    };
+import React, { useEffect, useState } from 'react';
+import { signIn } from 'next-auth/react'; // Import signIn from next-auth/react
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation'; // For App Router
 
-    const closePopup = () => {
-        setIsPopupOpen(false);
-    };
-    if (!isOpen) return null;
+const Popupgoogle = ({ isOpen, onClose }) => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
-    return (
-        
-        <div
-            id="login-popup"
-            tabIndex="-1"
-            className="bg-black/50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 h-full items-center justify-center flex"
-        >
-            <div className="relative p-4 w-full max-w-md h-full md:h-auto">
-                <div className="relative bg-white rounded-lg shadow">
-                    <button
-                        type="button"
-                        className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                        onClick={onClose}
-                    >
-                        <svg
-                            aria-hidden="true"
-                            className="w-5 h-5"
-                            fill="#c6c7c7"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
-                        <span className="sr-only">Close popup</span>
-                    </button>
+  useEffect(() => {
+    if (status === 'loading') return; // Do nothing while loading
+    if (session) {
+      // Redirect to Quiz page if session exists
+      router.push('/Quiz'); // Adjust the path to your Quiz page
+    }
+  }, [session, status, router]);
 
-                    <div className="p-5">
-                        <div className="text-center">
-                            <p className="mb-3 text-2xl font-semibold leading-5 text-slate-900">
-                                Login to your account
-                            </p>
-                            <p className="mt-2 text-sm leading-4 text-slate-600">
-                                You must be logged in to perform this action.
-                            </p>
-                        </div>
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
 
-                        <div className="mt-7 flex flex-col gap-2">
-                        <button 
-                                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
-                                onClick={openPopup} // Call the GitHub login handler
-                            >
-                                <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" className="h-[18px] w-[18px]" />
-                                Continue with GitHub
-                            </button>
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
 
-                            <button 
-                                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
-                                onClick={openPopup} // Call the Google login handler
-                            >
-                                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="h-[18px] w-[18px]" />
-                                Continue with Google
-                            </button>
+  // If there is a session, return null (show nothing)
+  if (session) {
+      router.push('/Quiz');
+      return null;
+  }
 
-                            <button 
-                                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
-                                onClick={openPopup} // Call the LinkedIn login handler
-                            >
-                                <img src="https://www.svgrepo.com/show/448234/linkedin.svg" alt="LinkedIn" className="h-[18px] w-[18px]" />
-                                Continue with LinkedIn
-                            </button>
-                        </div>
+  if (!isOpen) return null;
 
-                        <div className="flex w-full items-center gap-2 py-6 text-sm text-slate-600">
-                            <div className="h-px w-full bg-slate-200"></div>
-                            OR
-                            <div className="h-px w-full bg-slate-200"></div>
-                        </div>
+  // Handler for Google Login
+  const handleGoogleLogin = () => {
+    signIn('google', { callbackUrl: '/' }); // Redirect to homepage after login
+  };
 
-                        <form className="w-full">
-                            <label htmlFor="email" className="sr-only">Email address</label>
-                            <input
-                                name="email"
-                                type="email"
-                                autoComplete="email"
-                                required
-                                className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-                                placeholder="Email Address"
-                            />
-                            <label htmlFor="password" className="sr-only">Password</label>
-                            <input
-                                name="password"
-                                type="password"
-                                autoComplete="current-password"
-                                required
-                                className="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-                                placeholder="Password"
-                            />
-                            <p className="mb-3 mt-2 text-sm text-gray-500">
-                                <a href="/forgot-password" className="text-blue-800 hover:text-blue-600">Reset your password?</a>
-                            </p>
-                            <button
-                                type="submit"
-                                className="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400"
-                              
-                            >
-                                Continue
-                            </button>
-                        </form>
+  // Handler for GitHub Login (optional)
+  const handleGitHubLogin = () => {
+    signIn('github', { callbackUrl: '/' }); // Ensure GitHub provider is configured
+  };
 
-                        <div className="mt-6 text-center text-sm text-slate-600">
-                            Dont have an account?
-                            <a href="/signup" className="font-medium text-[#4285f4]"> Sign up</a>
-                        </div>
-                    </div>
-                </div>
+  // Handler for LinkedIn Login (optional)
+  const handleLinkedInLogin = () => {
+    signIn('linkedin', { callbackUrl: '/' }); // Ensure LinkedIn provider is configured
+  };
+
+  return (
+    <div
+      id="login-popup"
+      tabIndex="-1"
+      className="bg-black/50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 h-full items-center justify-center flex"
+    >
+      <div className="relative p-4 w-full max-w-md h-full md:h-auto">
+        <div className="relative bg-white rounded-lg shadow">
+          <button
+            type="button"
+            className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+            onClick={onClose}
+          >
+            <svg
+              aria-hidden="true"
+              className="w-5 h-5"
+              fill="#c6c7c7"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <span className="sr-only">Close popup</span>
+          </button>
+
+          <div className="p-5">
+            <div className="text-center">
+              <p className="mb-3 text-2xl font-semibold leading-5 text-slate-900">
+                Login to your account
+              </p>
+              <p className="mt-2 text-sm leading-4 text-slate-600">
+                You must be logged in to perform this action.
+              </p>
             </div>
-            {isPopupOpen && (
-                <Popupphone isOpen={isPopupOpen} onClose={closePopup} />
-            )}
+
+            <div className="mt-7 flex flex-col gap-2">
+              {/* GitHub Login Button */}
+              <button
+                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
+                onClick={handleGitHubLogin}
+              >
+                <img
+                  src="https://www.svgrepo.com/show/512317/github-142.svg"
+                  alt="GitHub"
+                  className="h-[18px] w-[18px]"
+                />
+                Continue with GitHub
+              </button>
+
+              {/* Google Login Button */}
+              <button
+                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
+                onClick={handleGoogleLogin} // Call the Google login handler
+              >
+                <img
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  alt="Google"
+                  className="h-[18px] w-[18px]"
+                />
+                Continue with Google
+              </button>
+
+              {/* LinkedIn Login Button */}
+              <button
+                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
+                onClick={handleLinkedInLogin} // Call the LinkedIn login handler
+              >
+                <img
+                  src="https://www.svgrepo.com/show/448234/linkedin.svg"
+                  alt="LinkedIn"
+                  className="h-[18px] w-[18px]"
+                />
+                Continue with LinkedIn
+              </button>
+            </div>
+
+            <div className="flex w-full items-center gap-2 py-6 text-sm text-slate-600">
+              <div className="h-px w-full bg-slate-200"></div>
+              OR
+              <div className="h-px w-full bg-slate-200"></div>
+            </div>
+
+            <form className="w-full" onSubmit={(e) => { 
+              e.preventDefault(); 
+              // Handle credential login if needed
+              console.log('Credential login submitted');
+            }}>
+              <label htmlFor="email" className="sr-only">Email address</label>
+              <input
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                placeholder="Email Address"
+              />
+              <label htmlFor="password" className="sr-only">Password</label>
+              <input
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                required
+                className="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                placeholder="Password"
+              />
+              <p className="mb-3 mt-2 text-sm text-gray-500">
+                <a href="/forgot-password" className="text-blue-800 hover:text-blue-600">Reset your password?</a>
+              </p>
+              <button
+                type="submit"
+                className="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400"
+              >
+                Continue
+              </button>
+            </form>
+
+            <div className="mt-6 text-center text-sm text-slate-600">
+              Don&apos;t have an account?
+              <a href="/signup" className="font-medium text-[#4285f4]"> Sign up</a>
+            </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Popupgoogle;
