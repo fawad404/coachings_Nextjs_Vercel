@@ -12,7 +12,7 @@
     display: block;
 } */
 
-/* .scrollbar-hide::-webkit-scrollbar {
+.scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
 
@@ -29,5 +29,11 @@
     white-space: wrap;
     scroll-behavior: smooth;
 
-} */
+} 
 
+.footer-custom {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  

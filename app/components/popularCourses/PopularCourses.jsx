@@ -46,7 +46,7 @@ const PopularCourses = ({path}) => {
 ];
 
   return (
-    <div className="w-full max-w-6xl mt-10 px-4 bg-white flex flex-row container justify-center items-center max-sm:flex-col">
+    <div className="w-full max-w-6xl mt-10 px-4 flex flex-row justify-center items-center max-sm:flex-col">
       <div className="w-full sm:w-[80%] lg:w-[80%] mt-2">
         <h2 className="text-black text-3xl font-semibold">
           Most Popular <span className="text-blue-500">Network Security Courses</span>
@@ -77,16 +77,6 @@ const PopularCourses = ({path}) => {
                   <span className="text-xs">{course.duration}</span>
                   <span className="mx-2">•</span>
                   <span className="text-xs">{course.learners}</span>
-                </div>
-                <div className="HoverContent text-xs mt-2 text-gray-500 hidden">
-                  <p className="text-xs underline">By APX Learning</p>
-                  <div className="border-b w-full mt-3"></div>
-                  <p className="mt-2">What you Will Learn</p>
-                  <ul className="mt-2">
-                    <li>Explain the concept of manual handling</li>
-                    <li>Other Details</li>
-                    <li>Other Details</li>
-                  </ul>
                 </div>
                 <div className="flex justify-between mt-5 space-x-4">
                   <button className="w-[35%] text-gray-700 border border-gray-300 rounded-md text-xs hover:bg-gray-100">

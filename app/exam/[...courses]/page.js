@@ -50,7 +50,7 @@ const Page = ({ params }) => {
   // Render different components based on URL length
   return (
     <>
-      {urlLength === 3 ? (
+      {urlLength === 2 ? (
         <Coaching 
           breadcrumbs={breadcrumbs}
           sectionTitle={sectionTitle}
@@ -58,19 +58,19 @@ const Page = ({ params }) => {
           categories={categories}
           products={products}
         />
-      ) : urlLength === 4 ? (
+      ) : urlLength === 3 ? (
         // <DiplomasCarousel />
         <CoachingDetail />
         
       ) : (
         <>
-        <div className='flex flex-col justify-center items-center min-h-screen'>
+        <div className='flex flex-col justify-center items-center min-h-screen '>
           <PopularCourses path={params.courses.slice(0, 2).join('/')} />
           <Carousel />
           <LearnerComponent />
           
         </div>
-        <Footer />
+       
         </>
       )}
     </>
