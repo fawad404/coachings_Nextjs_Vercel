@@ -5,7 +5,7 @@ const Footer = () => {
     <section className="relative py-20 overflow-hidden ">
   <img className="absolute top-0 left-0" src="https://static.shuffle.dev/components/preview/2f808e47-944e-42cf-b821-2358251e0600/assets/public/saturn-assets/images/footers/blue-light-left.png" alt="" />
   <img className="absolute bottom-0 left-1/2 transform -translate-x-1/2" src="https://static.shuffle.dev/components/preview/2f808e47-944e-42cf-b821-2358251e0600/assets/public/saturn-assets/images/footers/orange-light-bottom.png" alt="" />
-  <div className="relative px-4 mx-auto">
+  <div className="relative continer px-4 mx-auto">
     <div className="max-w-7xl mx-auto">
       <div className="pb-10 mb-10 border-b border-gray-100 items-center">
         <div className="flex flex-wrap -mx-4 items-center">
