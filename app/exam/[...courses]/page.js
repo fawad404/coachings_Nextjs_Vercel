@@ -70,7 +70,7 @@ const Page = ({ params }) => {
           <LearnerComponent />
           
         </div>
-       
+       <Footer />
         </>
       )}
     </>

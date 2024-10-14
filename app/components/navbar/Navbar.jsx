@@ -1,181 +1,232 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import MegaMenu from '../megaMenu/MegaMenu';
-import { useRouter } from 'next/navigation';
-import { FaSearch } from 'react-icons/fa'
+import { FaSearch } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isCoursesDropdownOpen, setCoursesDropdownOpen] = useState(false);
+  const [isExamsMegaMenuOpen, setExamsMegaMenuOpen] = useState(false);
+  const [isMoreDropdownOpen, setMoreDropdownOpen] = useState(false);
   const [isMegaMenuOpen, setMegaMenuOpen] = useState(false);
-
- 
-  // Array of dropdown items
-  const dropdownItems = [
-    'UPSC', 
-    'Comprehensive Exam', 
-    'CSAT Exam', 
-    'Prelims Exam', 
-    'Bridge Exam', 
-    'Main Exam', 
-    'Optional Exam', 
-    'Essay Exam', 
-    'Free Exam', 
-    'Test Series', 
-    'IGP'
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+  // Array of "More" dropdown items
+  const moreDropdownItems = [
+    {
+      name: 'Subjet'
+    },
+    {
+      name: 'Tutor'
+    },
+    {
+      name: 'Cart'
+    },
   ];
-  const router = useRouter();
 
   const handleItemClick = (itemName) => {
-    
-    console.log("Navigating to:", `/exam/${slugData}`);
-   
+    console.log("Navigating to:", `/exam/${itemName}`);
+    // Navigation logic can be added here if needed
   };
+
   return (
     <div className="bg-white">
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-         <div className="relative z-40 md:hidden lg:hidden" role="dialog" aria-modal="true" id="mobileMenu">
-           <div className="fixed inset-0 bg-black bg-opacity-25" aria-hidden="true"></div>
-           <div className="fixed inset-0 z-40 flex">
-             <div className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
-               <div className="flex px-4 pb-2 pt-5">
-                 <button
-                   id="closeMobileMenu"
-                   onClick={() => setMobileMenuOpen(false)} // Close mobile menu
-                   className="relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
-                 >
-                   <span className="sr-only">Close menu</span>
-                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
-                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                   </svg>
-                 </button>
-               </div>
-        
-               {/* Links */}
-               <div className="mt-2">
-                 <div className="border-b border-gray-200">
-                   <div className="-mb-px flex space-x-8 px-4" aria-orientation="horizontal" role="tablist">
-                     <button className="flex-1 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-base font-medium text-gray-900">
-                       Menu
-                     </button>
-                   </div>
-                 </div>
-          
-                 <div className="relative p-2">
-                   <button
-                     id="coursesDropdownToggle"
-                     className="flex items-center space-x-2 py-2 px-3 bg-transparent text-gray-900 focus:outline-none"
-                     onClick={() => setCoursesDropdownOpen(!isCoursesDropdownOpen)}
-                   >
-                     <span className="font-medium text-gray-900">Exams</span>
-                     <svg className="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
-                     </svg>
-                   </button>
-   
-                   {/* Dropdown Menu */} 
-                   {isCoursesDropdownOpen && (
-                     <div id="coursesDropdownMenu" className="mt-2 w-48 ring-1 ring-black ring-opacity-5">
-                       <div className="p-4">
-                       <ul role="list" className="space-y-2">
-                        {dropdownItems.map((item, index) => (
-                          <li key={index}>
-                            <button
-                              onClick={() => handleItemClick(item)}
-                              className="block py-2 px-3 text-gray-500 text-left w-full"
-                            >
-                              {item}
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
+        <div className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true" id="mobileMenu">
+          <div className="fixed inset-0 bg-black bg-opacity-25" aria-hidden="true" onClick={closeMobileMenu}></div>
+          <div className="fixed inset-0 z-50 flex">
 
+            <div className="relative flex mt-18 w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
+              <div className="flex items-center justify-between px-4 pt-5">
+                <a href="#">
+                  <img className="h-8 w-auto" src="https://softnix.co/wp-content/themes/softnix/tmpl/assets/lp01/images/softnix-co-light.png" alt="Your Company" />
+                </a>
+                <button
+                  onClick={closeMobileMenu}
+                  className="rounded-md p-2 inline-flex items-center justify-center text-gray-400 z-50"
+                >
+                  <span className="sr-only">Close menu</span>
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
 
-                       </div>
-                     </div>
-                   )}
-                 </div>
-               </div>
-   
-               <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                 <div className="flow-root"><a href="#" className="-m-2 block p-2 font-medium text-gray-900">Test</a></div>
-                 <div className="flow-root"><a href="#" className="-m-2 block p-2 font-medium text-gray-900">Past Papers</a></div>
-               </div>
-   
-               <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                 <div className="flow-root"><a href="#" className="-m-2 block p-2 font-medium text-gray-900">Test</a></div>
-                 <div className="flow-root"><a href="#" className="-m-2 block p-2 font-medium text-gray-900">Subjects</a></div>
-                 <div className="flow-root"><a href="#" className="-m-2 block p-2 font-medium text-gray-900">Tutor</a></div>
-                 <div className="flow-root"><a href="#" className="-m-2 block p-2 font-medium text-gray-900">Cart</a></div>
-               </div>
-             </div>
-           </div>
-         </div>
+              {/* Mobile Search Bar */}
+              <div className="px-4 py-2">
+                <div className="flex items-center">
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="flex-1 p-2 border border-gray-300 rounded-l-md"
+                  />
+                  <button className="p-2 bg-gray-600 text-white rounded-r-md">
+                    <FaSearch />
+                  </button>
+                </div>
+              </div>
+
+              {/* Mobile Menu Links */}
+              <div className="mt-6 space-y-6 px-4">
+                <a href="#" onClick={closeMobileMenu} className="block text-gray-900 font-medium">Home</a>
+                <a href="#" onClick={closeMobileMenu} className="block text-gray-900 font-medium">Notes</a>
+                <a href="#" onClick={closeMobileMenu} className="block text-gray-900 font-medium">Past Papers</a>
+
+                <div className="space-y-1">
+                  <button
+                    onClick={() => setMoreDropdownOpen(!isMoreDropdownOpen)}
+                    className="w-full flex items-center justify-between text-gray-900 font-medium"
+                  >
+                    More
+                    <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {isMoreDropdownOpen && (
+                    <div className="pl-4 mt-2 space-y-2">
+                      {moreDropdownItems.map((item, index) => (
+                        <a
+                          key={index}
+                          href="#"
+                          onClick={() => handleItemClick(item.name)}
+                          className="block text-gray-700 hover:text-blue-700"
+                        >
+                          {item.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       )}
- <div className="flex items-center ml-36 justify-center transform translate-y-12 ">
-  <input 
-    type="text" 
-    placeholder="Search..." 
-    className="ml-5 p-1 text-base h-8 w-52 border border-black rounded-l-md transform " 
-  />
-  <div className="h-8 w-12 bg-gray-600 flex justify-center items-center text-white  rounded-r-md">
-    <FaSearch className=" text-center " />
-  </div>
-</div>
 
-      <header className="relative border-b border-gray-400 z-50">
-        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            {/* Mobile menu toggle */}
-            <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2 text-gray-400"
-            >
+      {/* Main Navbar */}
+      <header className="relative border-b border-gray-200 z-10 w-full">
+        <nav className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 mx-16 max-md:mx-0 items-center justify-between">
+            {/* Mobile menu button */}
+            <button onClick={() => setMobileMenuOpen(true)} className="md:hidden p-2 text-gray-400">
               <span className="sr-only">Open menu</span>
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
               </svg>
             </button>
 
-            {/* Logo and Links (Desktop) */}
-            <div className="flex items-center">
+            {/* Logo */}
+            <div className=" ">
               <a href="#">
-                <img className="h-8 w-auto" src="https://softnix.co/wp-content/themes/softnix/tmpl/assets/lp01/images/softnix-co-light.png" alt="Your Company" />
+                <img className="h-8 w-full" src="https://softnix.co/wp-content/themes/softnix/tmpl/assets/lp01/images/softnix-co-light.png" alt="Your Company" />
               </a>
-              <ul className="hidden md:flex space-x-8 ml-10 text-gray-400">
-                <li><a href="#" className="hover:text-blue-700">Home</a></li>
-                <li className="relative">
-                  <button
-                    onClick={() => setMegaMenuOpen(!isMegaMenuOpen)}
-                    className="flex items-center space-x-2 hover:text-blue-700"
-                  >
-                    <span>Exams</span>
-                    <svg className="w-2.5 h-2.5 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
-                    </svg>
-                  </button>
-                </li>
-                <li><a href="#" className="hover:text-blue-700">Notes</a></li>
-                <li><a href="#" className="hover:text-blue-700">Past Papers</a></li>
-              </ul>
             </div>
 
-            {/* Right Side (Desktop) */}
-            <div className="hidden md:flex space-x-8">
-              <ul className="flex space-x-8 text-gray-400">
-                <li><a href="#" className="hover:text-blue-700">Subjects</a></li>
-                <li><a href="#" className="hover:text-blue-700">Tutor</a></li>
-                <li><a href="#" className="hover:text-blue-700">Cart</a></li>
-              </ul>
+            {/* Search Icon */}
+            <div className="max-md:hidden ml-6 px-4 py-2"> {/* Added margin-left to move away from logo */}
+              <div className="flex items-center">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="flex-1 p-2 border border-gray-300 rounded-l-md"
+                />
+                <button className="p-2 bg-gray-600 text-white rounded-r-md">
+                  <FaSearch />
+                </button>
+              </div>
+            </div>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex md:items-center md:space-x-6">
+              <a href="#" className="text-gray-700 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+
+              {/* Exams MegaMenu */}
+              <div>
+                <button
+                  onMouseEnter={() => setExamsMegaMenuOpen(true)}
+                  onMouseExit={() => setExamsMegaMenuOpen(false)}
+                  onClick={() => setExamsMegaMenuOpen((prev) => !prev)} // Toggle the menu on button click
+                  className="flex items-center text-gray-700 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                >
+                  Exams
+                  <svg className="ml-1 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {isExamsMegaMenuOpen && (
+                  <div className="absolute mt-2 left-[35%] w-full shadow-lg z-50">
+                    <MegaMenu />
+                  </div>
+                )}
+              </div>
+
+              <a href="#" className="text-gray-700 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Notes</a>
+              <a href="#" className="text-gray-700 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Past Papers</a>
+
+              {/* More Dropdown */}
+              <div>
+                <button
+                  onMouseEnter={() => setMoreDropdownOpen(true)}
+                  onMouseExit={() => setMoreDropdownOpen(false)}
+                  onClick={() => setMoreDropdownOpen(!isMoreDropdownOpen)}
+                  className="flex items-center text-gray-700 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                >
+                  More
+                  <svg className="ml-1 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {isMoreDropdownOpen && (
+                  <div className="absolute mt-4 w-[70%] -mr-[40%] z-50">
+                    <div id="moreMegaMenu" className="h-auto m-0 p-0">
+                      <div className="absolute flex justify-center items-start bg-white w-[30%] border rounded-lg h-auto">
+                        <div className="py-6 px-2 w-full h-full">
+                          <div className="flex justify-between items-center mb-4">
+                            <span className="text-gray-500 text-sm">MORE CATEGORIES</span>
+                            <a href="#" className="text-green-600 text-xs">View All More Options</a>
+                          </div>
+                          <ul className="divide-y divide-gray-200">
+                            {moreDropdownItems.map((category, index) => (
+                              <li key={index} className="group flex justify-between items-center w-full py-3 cursor-pointer hover:bg-gray-100">
+                                <div className="flex flex-row">
+                                  <div className="items-start justify-start flex-col inline-flex">
+                                    <span className="text-sm" onClick={() => handleMoreItemClick(category.name)}>
+                                      {category.name}
+                                    </span>
+                                  </div>
+                                </div>
+                                <svg className="w-6 h-6 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Log In, Sign Up, Language Selector */}
+              <div className="flex items-center space-x-6 border-l-2 border-gray-200 ml-6"> {/* Adjusted space */}
+                <a href="#" className="text-green-600 font-semibold ml-5">Log In</a>
+                <a href="#" className="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-700">Sign Up</a>
+                <button className="border border-gray-300 rounded-lg p-2 flex items-center justify-center hover:border-gray-400">
+                  <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2.25c5.384 0 9.75 4.366 9.75 9.75s-4.366 9.75-9.75 9.75S2.25 17.384 2.25 12 6.616 2.25 12 2.25zM3.5 9.5h17m-9.5 5a9.39 9.39 0 004.75-5m-9.5 0a9.39 9.39 0 00-4.75 5m7.75 5.5v-5.25" />
+                  </svg>
+                  <span className="ml-1 text-xs bg-black text-white rounded-full px-1.5 py-0.5">en</span>
+                </button>
+              </div>
+
             </div>
           </div>
         </nav>
-
-        {/* Mega Menu */}
-        {isMegaMenuOpen && <MegaMenu />}
       </header>
-   
+
     </div>
   );
 };

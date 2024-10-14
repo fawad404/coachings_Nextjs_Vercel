@@ -52,7 +52,7 @@ const MegaMenu = () => {
   ];
 
   return (
-    <div id="megaMenu" className="w-screen h-auto m-0 p-0 ml-56 mt-2">
+    <div id="megaMenu" className="w-full h-auto m-0 p-0 mt-2">
       <div className="absolute flex justify-center items-start bg-white w-[30%] border rounded-lg h-auto">
         <div className="py-6 px-2 w-full h-full">
           <div className="flex justify-between items-center mb-4">
