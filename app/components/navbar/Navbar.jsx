@@ -51,20 +51,7 @@ const Navbar = () => {
                 </button>
               </div>
 
-              {/* Mobile Search Bar */}
-              <div className="px-4 py-2">
-                <div className="flex items-center">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    className="flex-1 p-2 border border-gray-300 rounded-l-md"
-                  />
-                  <button className="p-2 bg-gray-600 text-white rounded-r-md">
-                    <FaSearch />
-                  </button>
-                </div>
-              </div>
-
+              
               {/* Mobile Menu Links */}
               <div className="mt-6 space-y-6 px-4">
                 <a href="#" onClick={closeMobileMenu} className="block text-gray-900 font-medium">Home</a>
@@ -116,7 +103,7 @@ const Navbar = () => {
             </button>
 
             {/* Logo */}
-            <div className=" ">
+            <div >
               <a href="#">
                 <img className="h-8 w-full" src="https://softnix.co/wp-content/themes/softnix/tmpl/assets/lp01/images/softnix-co-light.png" alt="Your Company" />
               </a>
