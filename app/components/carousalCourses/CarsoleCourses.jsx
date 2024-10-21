@@ -383,7 +383,7 @@ const TechCarousel = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> 
       </div>
     </div> 
   );

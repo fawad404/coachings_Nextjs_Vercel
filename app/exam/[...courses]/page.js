@@ -50,7 +50,7 @@ const Page = ({ params }) => {
   // Render different components based on URL length
   return (
     <>
-      {urlLength === 3 ? (
+      {urlLength === 2 ? (
         <Coaching 
           breadcrumbs={breadcrumbs}
           sectionTitle={sectionTitle}
@@ -58,7 +58,7 @@ const Page = ({ params }) => {
           categories={categories}
           products={products}
         />
-      ) : urlLength === 4 ? (
+      ) : urlLength === 3 ? (
         // <DiplomasCarousel />
         <CoachingDetail />
         
