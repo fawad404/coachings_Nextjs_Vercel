@@ -46,7 +46,7 @@ const PopularCourses = ({path}) => {
 ];
 
   return (
-    <div className="w-full max-w-6xl mt-10 px-4 bg-white flex flex-row container justify-center items-center max-sm:flex-col">
+    <div className="w-full max-w-7xl mt-10 px-4 flex flex-row justify-center items-center max-sm:flex-col">
       <div className="w-full sm:w-[80%] lg:w-[80%] mt-2">
         <h2 className="text-black text-3xl font-semibold">
           Most Popular <span className="text-blue-500">Network Security Courses</span>
@@ -54,7 +54,7 @@ const PopularCourses = ({path}) => {
 
         <div className="grid md:grid-cols-3 place-items-center lg:grid-cols-4 sm:grid-cols-2">
           {courses.map((course, index) => (
-            <div key={index} className="cards max-w-52 bg-white rounded-lg border border-gray-200 shadow-md overflow-hidden mt-4 ml-5">
+            <div key={index} className="cards max-w-56 max-h-auto bg-white rounded-lg border border-gray-200 shadow-md overflow-hidden mt-4 ml-5">
               <a href={`/exam/${path}/${slugify(course.title)}`}>
               {/* Image */}
               <div className="certificate relative">
@@ -78,18 +78,8 @@ const PopularCourses = ({path}) => {
                   <span className="mx-2">•</span>
                   <span className="text-xs">{course.learners}</span>
                 </div>
-                <div className="HoverContent text-xs mt-2 text-gray-500 hidden">
-                  <p className="text-xs underline">By APX Learning</p>
-                  <div className="border-b w-full mt-3"></div>
-                  <p className="mt-2">What you Will Learn</p>
-                  <ul className="mt-2">
-                    <li>Explain the concept of manual handling</li>
-                    <li>Other Details</li>
-                    <li>Other Details</li>
-                  </ul>
-                </div>
                 <div className="flex justify-between mt-5 space-x-4">
-                  <button className="w-[35%] text-gray-700 border border-gray-300 rounded-md text-xs hover:bg-gray-100">
+                  <button className="w-[35%] text-gray-700 border border-gray-300 rounded-md text-xs hover:bg-gray-100 px-2">
                     More Info
                   </button>
                   <button className="w-[65%] text-white bg-green-600 rounded-md text-xs hover:bg-green-700">

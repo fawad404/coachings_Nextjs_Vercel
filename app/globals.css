@@ -12,10 +12,9 @@
     display: block;
 } */
 
-/* .scrollbar-hide::-webkit-scrollbar {
+ .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
-
 
 .scrollbar-hide {
     -ms-overflow-style: none;
@@ -28,6 +27,5 @@
     overflow-x: auto;
     white-space: wrap;
     scroll-behavior: smooth;
-
-} */
+} 
 

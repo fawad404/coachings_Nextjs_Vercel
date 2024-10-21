@@ -93,7 +93,7 @@ const Navbar = () => {
       {/* Main Navbar */}
       <header className="relative border-b border-gray-200 z-10 w-full">
         <nav className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 max-md:mx-0 items-center justify-between">
+          <div className="flex h-16 items-center justify-between">
             {/* Mobile menu button */}
             <button onClick={() => setMobileMenuOpen(true)} className="md:hidden p-2 text-gray-400">
               <span className="sr-only">Open menu</span>
@@ -103,28 +103,28 @@ const Navbar = () => {
             </button>
 
             {/* Logo */}
-            <div className="w-full">
+            <div className="w-auto max-w-[150px]">
               <a href="#">
-                <img className="h-8 w-32" src="https://softnix.co/wp-content/themes/softnix/tmpl/assets/lp01/images/softnix-co-light.png" alt="Your Company" />
+                <img className="h-8 w-full max-w-full object-contain" src="https://softnix.co/wp-content/themes/softnix/tmpl/assets/lp01/images/softnix-co-light.png" alt="Your Company" />
               </a>
             </div>
 
             {/* Search Icon */}
-            <div className="max-lg:hidden  px-2 py-2 w-[90%]">
-              <div className="flex items-center">
+            <div className="hidden lg:flex px-2 py-2 w-[50%] max-w-sm">
+              <div className="flex items-center w-full">
                 <input
                   type="text"
                   placeholder="Search..."
-                  className="flex-1 p-1 border border-gray-300 rounded-l-md"
+                  className="flex-1 p-2 border border-gray-300 rounded-l-md w-full"
                 />
-                <button className="p-1 bg-gray-600 text-white rounded-r-md">
+                <button className="p-2 bg-gray-600 text-white rounded-r-md">
                   <FaSearch />
                 </button>
               </div>
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex md:items-center md:space-x-6">
+            <div className="hidden md:flex md:items-center md:space-x-6 w-auto">
               <a href="#" className="text-gray-700 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
 
               {/* Exams MegaMenu */}
