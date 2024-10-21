@@ -1,6 +1,6 @@
 'use client'; 
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as mammoth from "mammoth";
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
@@ -24,6 +24,9 @@ const QuizFromWord = () => {
     currentQuestionIndex,
     answers,
   } = useSelector((state) => state.quiz);
+
+  const [correct, setCorrect] = useState('');
+  const [incorrect, setIncorrect] = useState('');
 
 
 
@@ -127,6 +130,8 @@ const handleOptionSelect = (option) => {
 
       const result = await response.json();
       console.log(result); 
+      setCorrect(result.correctCount);
+      setIncorrect(result.incorrectCount);
     //   router.push("/Quiz/Result");
     } catch (error) {
       console.error("Error submitting answers:", error);
@@ -283,7 +288,7 @@ const handleOptionSelect = (option) => {
   {/* Status Counters */}
   <div className="grid grid-cols-3 gap-4 mb-4">
     <div className="flex items-center space-x-1">
-      <div className="border bg-green-500 text-white w-6 h-6 text-xs flex justify-center items-center">33</div>
+      <div className="border bg-green-500 text-white w-6 h-6 text-xs flex justify-center items-center">{correct && correct}</div>
       <span className="text-sm">Correct</span>
     </div>
     <div className="flex items-center space-x-1">
@@ -291,7 +296,7 @@ const handleOptionSelect = (option) => {
       <span className="text-sm">Unattempted</span>
     </div>
     <div className="flex items-center space-x-1">
-      <div className="border bg-red-500 text-white w-6 h-6 text-xs flex justify-center items-center">33</div>
+      <div className="border bg-red-500 text-white w-6 h-6 text-xs flex justify-center items-center">{incorrect && incorrect}</div>
       <span className="text-sm">Incorrect</span>
     </div>
     <div className="flex items-center space-x-1">

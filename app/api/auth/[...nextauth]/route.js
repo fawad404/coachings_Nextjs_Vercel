@@ -1,6 +1,9 @@
+import User from '@/app/utilis/model/user';
+import { connectToDB } from '@/app/utilis/mongodb';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
+import { NextResponse } from 'next/server';
 
 const authOptions = {
     providers: [
@@ -38,8 +41,32 @@ const authOptions = {
     },
     callbacks: {
         async signIn({ user, account, profile }) {
+            console.log("State received:", email);
             // Log user info on successful sign-in
-            console.log("User signed in:", user);
+           
+                // Connect to the database
+                await connectToDB();
+            
+                // Extract the email from the request body
+                const { email } = user.email;
+            
+                if (!email) {
+                  return NextResponse.json({ error: 'Email parameter is required' }, { status: 400 });
+                }
+            
+                // Query the database to get a specific test by email
+                const loginUser = await User.findOne({ email });
+            
+                if (!loginUser) {
+                  // Save the email if not found
+                  const newUser = new User({ email });
+                  await newUser.save();
+                  return NextResponse.json({ message: 'Email saved successfully' }, { status: 201 });
+                }
+            
+                
+              
+            console.log("User signed in from database:", loginUser);
             return true;  // Allow the sign-in
         },
         async jwt({ token, user }) {
