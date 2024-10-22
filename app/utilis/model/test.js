@@ -1,14 +1,25 @@
 import mongoose, { Schema, model, models } from 'mongoose';
 
 const TestSchema = new mongoose.Schema({
-  username: {
+  title: {
     type: String,
-    required: false, // Username is optional
+    required: [true, 'Title is required!'], // Username is optional
   },
-  email: {
+  description: {
     type: String,
-    unique: [true, 'Email already exists!'],
-    required: [true, 'Email is required!'],
+    required: [true, 'Test Description is required!'],
+  },
+  year: {
+    type: String,
+    required: [true, 'Test year is required!'],
+  },
+  totalquestions: {
+    type: String,
+    required: [true, 'Test Totalquestions is required!'],
+  },
+  hours: {
+    type: String,
+    required: [true, 'Test Hours is required!'],
   },
 });
 
