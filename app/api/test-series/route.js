@@ -30,24 +30,24 @@ export const POST = async (req) => {
     await connectToDB();
 
     // Extract the email from the request body
-    const { email } = await req.json();
+    const { title, description, hours, totalquestions, year } = await req.json();
 
-    if (!email) {
-      return NextResponse.json({ error: 'Email parameter is required' }, { status: 400 });
+    if (!title && !description && !hours && !totalquestions && !year) {
+      return NextResponse.json({ error: 'All parameters are required' }, { status: 400 });
     }
 
     // Query the database to get a specific test by email
-    const test = await Test.findOne({ email });
+    // const test = await Test.findOne({ email });
 
-    if (!test) {
+    // if (!test) {
       // Save the email if not found
-      const newTest = new Test({ email });
+      const newTest = new Test({ title, description, hours, totalquestions, year  });
       await newTest.save();
-      return NextResponse.json({ message: 'Email saved successfully' }, { status: 201 });
-    }
+      return NextResponse.json({ message: 'Test Record saved successfully' , Test: newTest}, { status: 201 });
+      // }
+      
 
     // Return the existing test as a JSON response
-    return NextResponse.json(test);
   } catch (error) {
     console.error('Error processing request:', error);
     return NextResponse.json({ error: 'Failed to process request' }, { status: 500 });

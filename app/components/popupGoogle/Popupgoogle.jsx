@@ -6,7 +6,11 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation'; // For App Router
 
 const Popupgoogle = ({ isOpen, onClose }) => {
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -47,6 +51,21 @@ const Popupgoogle = ({ isOpen, onClose }) => {
   // Handler for LinkedIn Login (optional)
   const handleLinkedInLogin = () => {
     signIn('linkedin', { callbackUrl: '/' }); // Ensure LinkedIn provider is configured
+  };
+
+  const handleSignIn = async () => {
+    setError(''); // Clear previous errors
+    const result = await signIn('credentials', {
+      email,
+      password,
+      redirect: false, // Prevent redirect
+    });
+  
+    if (result.error) {
+      setError(result.error === 'CredentialsSignin' ? 'Username and Password is incorrect' : result.error);
+    } else {
+      router.push('/'); // Redirect on successful sign in
+    }
   };
 
   return (
@@ -146,6 +165,7 @@ const Popupgoogle = ({ isOpen, onClose }) => {
                 type="email"
                 autoComplete="email"
                 required
+                onChange={(e) => setEmail(e.target.value)}
                 className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                 placeholder="Email Address"
               />
@@ -155,14 +175,16 @@ const Popupgoogle = ({ isOpen, onClose }) => {
                 type="password"
                 autoComplete="current-password"
                 required
+                onChange={(e) => setPassword(e.target.value)}
                 className="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
                 placeholder="Password"
               />
               <p className="mb-3 mt-2 text-sm text-gray-500">
-                <a href="/forgot-password" className="text-blue-800 hover:text-blue-600">Reset your password?</a>
+                <a href="/forgot-password" className="text-blue-800 hover:text-blue-600">{error && error}</a>
               </p>
               <button
                 type="submit"
+                onClick={handleSignIn}
                 className="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400"
               >
                 Continue

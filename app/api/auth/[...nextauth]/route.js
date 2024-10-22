@@ -4,7 +4,7 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import { NextResponse } from 'next/server';
-
+import bcrypt from 'bcrypt';
 const authOptions = {
     providers: [
         // Google Provider
@@ -20,16 +20,47 @@ const authOptions = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
-                const { email, password } = credentials;
-
-                // For demonstration purposes, this just logs the credentials
-                console.log("Email:", email);
-                console.log("Password:", password);
-
-                // Here you could add custom logic to verify the email and password
-                // Since there's no database, let's assume login is always successful for testing
-                return { id: "1", email };  // Mock user object
-            },
+                if (!credentials.email || !credentials.password) {
+                  throw new Error('Email and Password are required');
+                }
+        
+                try {
+                  await connectToDB();
+        
+                  // Check if user exists in the database
+                  const user = await User.findOne({ email: credentials.email });
+                  
+                  if (user && await bcrypt.compare(credentials.password, user.password)) {
+                    return {
+                      email: user.email,
+                      username: user.username || 'User',
+                    };
+                  }
+        
+                  // Create new user if not exists
+                  if (!user) {
+                    const hashedPassword = await bcrypt.hash(credentials.password, 10);
+        
+                    const newUser = new User({
+                      email: credentials.email,
+                      username: credentials.email.split('@')[0], // Default username
+                      password: hashedPassword,
+                    });
+        
+                    await newUser.save();
+        
+                    return {
+                      email: newUser.email,
+                      username: newUser.username,
+                    };
+                  }
+        
+                  return null;
+                } catch (error) {
+                  console.error('Authentication Error:', error);
+                  throw new Error('Authentication failed');
+                }
+              },
         }),
     ],
     session: {
@@ -41,33 +72,26 @@ const authOptions = {
     },
     callbacks: {
         async signIn({ user, account, profile }) {
-            console.log("State received:", email);
-            // Log user info on successful sign-in
-           
-                // Connect to the database
-                await connectToDB();
-            
-                // Extract the email from the request body
-                const { email } = user.email;
-            
-                if (!email) {
-                  return NextResponse.json({ error: 'Email parameter is required' }, { status: 400 });
-                }
-            
-                // Query the database to get a specific test by email
-                const loginUser = await User.findOne({ email });
-            
-                if (!loginUser) {
-                  // Save the email if not found
-                  const newUser = new User({ email });
-                  await newUser.save();
-                  return NextResponse.json({ message: 'Email saved successfully' }, { status: 201 });
-                }
-            
-                
+            if (account.provider === 'google') {
+              await connectToDB();
               
-            console.log("User signed in from database:", loginUser);
-            return true;  // Allow the sign-in
+              // Check if the user already exists
+              const existingUser = await User.findOne({ email: user.email });
+        
+              if (!existingUser) {
+                const newUser = new User({
+                  email: user.email,
+                  username: user.name || 'User',
+                  // No password needed for Google users
+                });
+        
+                await newUser.save();
+              }
+        
+              return true;  // Let the sign-in continue
+            }
+        
+            return true;
         },
         async jwt({ token, user }) {
             // Log JWT token and user info
