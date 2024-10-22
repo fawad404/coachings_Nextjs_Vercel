@@ -9,7 +9,7 @@ const slugify = (text) => {
 };
 
 const MegaMenu = () => {
-  const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [hoveredCategory, setHoveredCategory] = useState(false);
   const router = useRouter();
 
   const handleItemClick = (itemName) => {
@@ -65,7 +65,9 @@ const MegaMenu = () => {
                 key={index}
                 className="group flex justify-between items-center w-full py-3 cursor-pointer hover:bg-gray-100"
                 onMouseEnter={() => setHoveredCategory(index)}
-                onMouseLeave={() => setHoveredCategory(null)}
+                onMouseLeave={() => setHoveredCategory(false)}
+                
+                
               >
                 <div className="flex flex-row">
                   {/* Category Image */}
@@ -90,7 +92,7 @@ const MegaMenu = () => {
                 </svg>
 
                 {hoveredCategory === index && (
-                  <div className="absolute top-0 left-full bg-gray-100 border border-gray-200 shadow-lg rounded-lg w-full h-full p-6 z-10 overflow-y-scroll overflow-x-hidden">
+                  <div className="absolute top-0 left-full bg-gray-100 border border-gray-200 shadow-lg rounded-lg w-full h-full p-6 z-10 overflow-x-hidden">
                     <div className="w-full">
                       <h3 className="text-green-600 font-semibold text-base mb-4">View Top Courses</h3>
                       <ul className="text-gray-700">
