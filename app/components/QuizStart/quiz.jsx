@@ -27,6 +27,7 @@ const QuizFromWord = () => {
 
   const [correct, setCorrect] = useState('');
   const [incorrect, setIncorrect] = useState('');
+  const [emptyAnswerss, setEmptyAnswerss] = useState('');
 
 
 
@@ -132,6 +133,9 @@ const handleOptionSelect = (option) => {
       console.log(result); 
       setCorrect(result.correctCount);
       setIncorrect(result.incorrectCount);
+      setEmptyAnswerss(result.emptyAnswers);
+      console.log(result.emptyAnswers);
+      dispatch(resetQuiz()); 
     //   router.push("/Quiz/Result");
     } catch (error) {
       console.error("Error submitting answers:", error);
@@ -207,10 +211,10 @@ const handleOptionSelect = (option) => {
                 {/* Right Column for the Options */}
                 <div className="w-1/2 pl-4 max-md:mt-8">
   <ul className="mb-4">
-    {questions[currentQuestionIndex]?.options.map((option) => {
-      // Find the answer for the current question
-      const selectedAnswer = answers.find(answer => answer.id === currentQuestionIndex);
-      const isChecked = selectedAnswer && selectedAnswer.selectedOptionValue === option.label;
+          {questions[currentQuestionIndex]?.options.map((option) => {
+          const selectedAnswer = answers.find(answer => answer.id === currentQuestionIndex);
+          const isChecked = selectedAnswer ? selectedAnswer.selectedOptionValue === option.label : false;
+
 
       return (
         <li key={option.label} className="mb-2">
@@ -292,17 +296,17 @@ const handleOptionSelect = (option) => {
       <span className="text-sm">Correct</span>
     </div>
     <div className="flex items-center space-x-1">
-      <div className="border border-gray-500 text-gray-700 w-6 h-6 text-xs flex justify-center items-center">33</div>
+      <div className="border border-gray-500 text-gray-700 w-6 h-6 text-xs flex justify-center items-center">{emptyAnswerss && emptyAnswerss}</div>
       <span className="text-sm">Unattempted</span>
     </div>
     <div className="flex items-center space-x-1">
       <div className="border bg-red-500 text-white w-6 h-6 text-xs flex justify-center items-center">{incorrect && incorrect}</div>
       <span className="text-sm">Incorrect</span>
     </div>
-    <div className="flex items-center space-x-1">
-      <div className="border bg-yellow-500 text-white w-6 h-6 text-xs flex justify-center items-center">33</div>
+    {/* <div className="flex items-center space-x-1">
+      <div className="border bg-yellow-500 text-white w-6 h-6 text-xs flex justify-center items-center">{emptyAnswers && emptyAnswers}</div>
       <span className="text-sm">Not Visited</span>
-    </div>
+    </div> */}
   </div>
 
   {/* Speed Indicators */}

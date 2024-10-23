@@ -26,28 +26,19 @@ export const GET = async (req) => {
 
 export const POST = async (req) => {
   try {
-    // Connect to the database
+    
     await connectToDB();
 
-    // Extract the email from the request body
     const { title, description, hours, totalquestions, year } = await req.json();
 
     if (!title && !description && !hours && !totalquestions && !year) {
       return NextResponse.json({ error: 'All parameters are required' }, { status: 400 });
     }
 
-    // Query the database to get a specific test by email
-    // const test = await Test.findOne({ email });
-
-    // if (!test) {
-      // Save the email if not found
       const newTest = new Test({ title, description, hours, totalquestions, year  });
       await newTest.save();
       return NextResponse.json({ message: 'Test Record saved successfully' , Test: newTest}, { status: 201 });
-      // }
-      
-
-    // Return the existing test as a JSON response
+  
   } catch (error) {
     console.error('Error processing request:', error);
     return NextResponse.json({ error: 'Failed to process request' }, { status: 500 });
