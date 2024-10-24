@@ -13,6 +13,7 @@ import {
   jumpToQuestion,
   resetQuiz,
 } from '../../store/quizSlice'; 
+import ExtractKeys from "./extractkeys";
 
 const QuizFromWord = () => {
   const { data: session, status } = useSession();
@@ -27,6 +28,7 @@ const QuizFromWord = () => {
 
   const [correct, setCorrect] = useState('');
   const [incorrect, setIncorrect] = useState('');
+  const [emptyAnswerss, setEmptyAnswerss] = useState('');
 
 
 
@@ -86,9 +88,24 @@ const QuizFromWord = () => {
   };
 
     
-const handleOptionSelect = (option) => {
-    const key = 'A'; 
-    dispatch(selectOption({ questionId: currentQuestionIndex, selectedOptionValue: option, key }));
+  const [keys, setKeys] = useState([]); // State to hold the keys
+
+  const handleOptionSelect = (option) => {
+    const key = keys[currentQuestionIndex] || ''; // Get the key for the current question or default to ''
+    
+    console.log('Current Key:', key); // Log the current key
+  
+    // Dispatch with the current question index, selected option, and the key
+    dispatch(selectOption({
+      questionId: currentQuestionIndex,
+      selectedOptionValue: option,
+      key: key // Attach the key to the answer
+    }));
+  };
+  
+
+  const handleKeysExtracted = (extractedKeys) => {
+    setKeys(extractedKeys); // Set keys when extracted
   };
   
 
@@ -132,6 +149,9 @@ const handleOptionSelect = (option) => {
       console.log(result); 
       setCorrect(result.correctCount);
       setIncorrect(result.incorrectCount);
+      setEmptyAnswerss(result.emptyAnswers);
+      console.log(result.emptyAnswers);
+      dispatch(resetQuiz()); 
     //   router.push("/Quiz/Result");
     } catch (error) {
       console.error("Error submitting answers:", error);
@@ -145,6 +165,7 @@ const handleOptionSelect = (option) => {
   } else {
     return (
       <div className="flex h-screen w-screen">
+        <ExtractKeys onKeysExtracted={handleKeysExtracted} />
         {/* Main Content */}
         <div className="w-screen bg-white flex-1">
           {/* Header */}
@@ -207,10 +228,10 @@ const handleOptionSelect = (option) => {
                 {/* Right Column for the Options */}
                 <div className="w-1/2 pl-4 max-md:mt-8">
   <ul className="mb-4">
-    {questions[currentQuestionIndex]?.options.map((option) => {
-      // Find the answer for the current question
-      const selectedAnswer = answers.find(answer => answer.id === currentQuestionIndex);
-      const isChecked = selectedAnswer && selectedAnswer.selectedOptionValue === option.label;
+          {questions[currentQuestionIndex]?.options.map((option) => {
+          const selectedAnswer = answers.find(answer => answer.id === currentQuestionIndex);
+          const isChecked = selectedAnswer ? selectedAnswer.selectedOptionValue === option.label : false;
+
 
       return (
         <li key={option.label} className="mb-2">
@@ -292,17 +313,17 @@ const handleOptionSelect = (option) => {
       <span className="text-sm">Correct</span>
     </div>
     <div className="flex items-center space-x-1">
-      <div className="border border-gray-500 text-gray-700 w-6 h-6 text-xs flex justify-center items-center">33</div>
+      <div className="border border-gray-500 text-gray-700 w-6 h-6 text-xs flex justify-center items-center">{emptyAnswerss && emptyAnswerss}</div>
       <span className="text-sm">Unattempted</span>
     </div>
     <div className="flex items-center space-x-1">
       <div className="border bg-red-500 text-white w-6 h-6 text-xs flex justify-center items-center">{incorrect && incorrect}</div>
       <span className="text-sm">Incorrect</span>
     </div>
-    <div className="flex items-center space-x-1">
-      <div className="border bg-yellow-500 text-white w-6 h-6 text-xs flex justify-center items-center">33</div>
+    {/* <div className="flex items-center space-x-1">
+      <div className="border bg-yellow-500 text-white w-6 h-6 text-xs flex justify-center items-center">{emptyAnswers && emptyAnswers}</div>
       <span className="text-sm">Not Visited</span>
-    </div>
+    </div> */}
   </div>
 
   {/* Speed Indicators */}
